@@ -1,0 +1,37 @@
+Package: eRNAkit
+Type: Package
+Title: A tool kit for characterising eRNA reguratory functions beyond the nucleus.
+Version: 0.2.1
+Authors@R: c(
+    person(
+  "Chinedu", "Anene",
+  email = "caanenedr@outlook.com",
+  role = c("aut", "cre"),
+  comment = c(ORCID = "0000-0002-3591-3358")
+    ),
+    person(
+      "Natalia", "Benova",
+      role = "ctb"
+    ),
+    person(
+      "Rene", "Kuklinkova",
+      role = "ctb"
+    )
+  )
+Description: eRNAkit, is a comprehensive and accessible resource designed to address the gap in non-canonical eRNA functions in humans.
+    It includes an array of analtyical workflows, db integrating eRNA subcellular localisation, RNA–RNA interaction and expression.
+    It also includes a ui app "eRNAkitApp to interactively explore the db.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Imports:
+    Biostrings,
+    GenomicRanges,
+    tidyr,
+    dplyr,
+    ggplot2,
+    igraph,
+    data.table,
+    rintrojs,
+    shiny,
