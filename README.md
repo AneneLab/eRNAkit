@@ -14,7 +14,7 @@ To assist users, eRNAkit provides a transcriptome-wide map of:
 - eRNA-ribosome associations
 
 These insights help elucidate the functional roles of eRNAs beyond the nucleus.
-We are currently working on expanding the analytically workflows and database to include - 
+We are currently working on expanding the analytics workflows and database to include - 
 additional utility functions and profiles of eRNA under various stress conditions "STRESS eRNA".
 
 ### Installation
