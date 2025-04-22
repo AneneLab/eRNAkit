@@ -48,7 +48,7 @@ ui <- dashboardPage(
       a(
         strong("ABOUT eRNAkit"),
         height = 40,
-        href = "https://github.com/caanene1/RBPInper/blob/main/README.md",
+        href = "https://github.com/AneneLab/eRNAkit",
         title = "",
         target = "_blank"
       ),
