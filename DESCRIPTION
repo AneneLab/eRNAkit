@@ -1,7 +1,7 @@
 Package: eRNAkit
 Type: Package
 Title: A tool kit for characterising eRNA reguratory functions beyond the nucleus.
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: c(
     person(
   "Chinedu", "Anene",
