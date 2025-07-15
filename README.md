@@ -55,6 +55,7 @@ Below is a summary of each slot.
 |-----------|-------------|
 | `TADS` | Genome wide topologically associating domains (TADS, via Encode). Serves as template for upstream regulations. |
 | `Regulome` | Genome wide regulatory element status across multiple cell types (via Ensemble regulatory build). |
+
 &nbsp;
 **A column mapping for the information in these slots can be found inside eRNAkitDB.meta**
 
@@ -133,15 +134,15 @@ Description of the implemented functions are described in `eRNAkit_0.2.1.pdf` fi
 
 &nbsp;
 
-#### For core components of the package, please cite: <br>
-**eRNAkit: Expanding the Functional Atlas of human Enhancer RNAs Beyond the Nucleus** <br>
+**For core components of the package, please cite:** <br>
+eRNAkit: Expanding the Functional Atlas of human Enhancer RNAs Beyond the Nucleus <br>
 Natalia Benova, Rene Kuklinkova, Mahmoud K Eldahshoury, Chinedu Anthony Anene <br>
 doi: https://doi.org/10.1101/2025.04.25.650683
 
 &nbsp;
 
-#### For information on eRNA link to target mRNA stability and translation efficiency, please cite: <br>
-**eRNAs Modulate mRNA Stability and Translation Efficiency to Bridge Transcriptional and Post-transcriptional Gene Regulation** <br>
+**For eRNA's link to target mRNA stability and translation efficiency, please cite:** <br>
+eRNAs Modulate mRNA Stability and Translation Efficiency to Bridge Transcriptional and Post-transcriptional Gene Regulation <br>
 Rene Kuklinkova, Natalia Benova, Chinedu Anthony Anene <br>
 doi: https://doi.org/10.1101/2025.07.06.663389 
 
