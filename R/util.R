@@ -1,3 +1,31 @@
+#' Check for Numeric Columns in a Data Frame or Matrix
+#'
+#' Validates that all columns in the provided data frame or matrix are numeric.
+#' If any columns are non-numeric, the function stops execution and returns an error
+#' message listing the offending columns.
+#'
+#' @param df A data frame or matrix to check.
+#' @param l A character string used to identify the input in error messages.
+#'
+#' @return No return value; called for side effects. Stops execution if non-numeric
+#' columns are detected.
+#'
+#' @examples
+#' \dontrun{
+#' checkN(mtcars, "mtcars") # should pass
+#' checkN(iris, "iris")     # will error because of non-numeric columns
+#' }
+#' @export
+checkN <- function(df, l) {
+  non <- !sapply(df, is.numeric)
+  if (any(non)) {
+    stop(sprintf("'%s' contains non-numeric columns: %s",
+                 l, paste(names(df)[non], collapse = ", ")))
+  }
+}
+
+
+
 #' Pivot a wide db table to long
 #'
 #' Converts wide emi db table to long format for processing
@@ -20,6 +48,7 @@ wide2long <- function(df, keep_cols) {
 }
 
 
+
 #' Check if all elements of a db "emi" is NULL.
 #'
 #' This is specific for Dr. Anene's DBs.
@@ -33,6 +62,7 @@ check_null <- function(db) {
   res <- sapply(db, is.null)
   return(all(res))
 }
+
 
 
 #' Filter a list of data frames by column and value
@@ -122,6 +152,7 @@ max_cols <- function(x) {
 
   return(c(max1, max2))
 }
+
 
 #' Get id of max column by rows.
 #'
