@@ -24,7 +24,7 @@ columns = samples). Row names should be eRNAkit IDs "enxxx".}
 
 \item{G}{Numeric matrix or \code{data.frame} of mRNA expression (rows = mRNAs,
 columns = samples). Row names should be Ensemble IDs to match output1-3.
-@param t False discovery rate threshold for filtering results (default: `0.1`).}
+@param t False discovery rate threshold for filtering G results (default: `0.1`).}
 }
 \value{
 A named \code{list} with components:
