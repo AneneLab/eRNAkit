@@ -150,3 +150,9 @@ doi: https://doi.org/10.1101/2025.07.06.663389
 
 ## Contacts
 c.a.anene{at}leedsbeckett.ac.uk
+
+## License
+This software is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+
+- **Free for academic and non-commercial research.**
+- **Commercial use requires a license. Please contact caanenedr{@}outlook.com for details.**

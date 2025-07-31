@@ -72,8 +72,8 @@ rna2rna <- function(chimGR, geneGR, enhGR){
 #' @returns Returns GRanges
 #' @export
 getGRange <- function(tab=exmp){
-  gobj <- GRanges(seqnames = tab$chr,
-                  ranges = IRanges(start = tab$start,
+  gobj <- GenomicRanges::GRanges(seqnames = tab$chr,
+                  ranges = IRanges::IRanges(start = tab$start,
                                    end = tab$end),
                   strand = tab$strand,
                   mcols = tab[!names(tab) %in% c("chr", "start", "end", "strand")])

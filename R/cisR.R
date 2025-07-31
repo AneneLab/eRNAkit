@@ -20,7 +20,7 @@
 #' result <- to_dete(input_df, fdr = 0.05, db = eRNAkitDB)
 #'
 #' @export
-cisR_explore <- function(input, fdr=0.1, db=eRNAkitDB){
+TranCi_explore <- function(input, fdr=0.1, db=eRNAkitDB){
 
   tab <- input
   tab$chr <- sub("chr", "", tab$chr)
@@ -47,7 +47,7 @@ cisR_explore <- function(input, fdr=0.1, db=eRNAkitDB){
     return(NULL)
   }
 
-  matched <- matched[c(1, 7)]
+  matched <- matched[c("mcols.id", "mcols.E")]
   names(matched) <- c("id", "E")
 
 
@@ -59,6 +59,7 @@ cisR_explore <- function(input, fdr=0.1, db=eRNAkitDB){
   cisRdb[["e2decay"]] <- dete$de
   cisRdb[["e2TE"]] <- dete$te
 
+  ## need to do ranking here
 
   return(cisRdb)
 }
@@ -89,7 +90,7 @@ cisR_explore <- function(input, fdr=0.1, db=eRNAkitDB){
 #' }
 #'
 #' @export
-cisR <- function(vcf="path/to/vcf", E="eRNA", G="mRNA",
+TranCi <- function(vcf="path/to/vcf", E="eRNA", G="mRNA",
                  n=2, fdr=0.1, db=eRNAkitDB){
   cisRdb <- list()
   cisRdb[["var"]] <- eRNAkit::process_vcf(vcf, n=n)
@@ -416,6 +417,10 @@ to_dete <- function(E, DB, t=0.1){
     out <- merge(DB$G[c("ID", "symbol")], out,
                  by.x = "symbol", by.y = "G", all.y = TRUE)
 
+    if (nrow(out) == 0) {
+      return(cbind(out, pair = character()))
+    }
+
     out$pair <- paste0(out$E, "_", out$ID)
 
     return(out)
@@ -551,7 +556,13 @@ process_vcf <- function(folder, n=2) {
                      quote = "\"", comment.char = "#")
 
     df <- df[df$V7 == "PASS", ]
-    df <- df[nchar(as.character(df$V4)) == 1 & nchar(as.character(df$V5)) == 1, ]
+
+    #### You can now add something here if you want
+    ### This will require a different logic because model for > 1bp need thinking
+    df$keep <- ifelse(nchar(df$V4) == 1 & grepl("^([ACGT])(,[ACGT])*$", df$V5),
+                      "yes", "")
+    df <- df[df$keep %in% "yes", ]
+
     df$id <- paste(df$V1, df$V2, df$V4, df$V5, sep = ":")
     df$sample <- sub("\\.vcf(\\.gz)?$", "", basename(vcfs[i]))
     df <- df[c("id", "sample")]
