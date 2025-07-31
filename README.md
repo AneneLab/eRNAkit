@@ -122,13 +122,13 @@ Most dependencies should install automatically. If not, install them manually us
 The first run of the eRNAkitApp should also install any missing packages automatically.
 
 ### **Integration to other pipelines**
-Standard bioinformatics files such as .bed, .gtf and .fa can easily be extracted using utility operations including with package.
+Standard bioinformatics files such as .bed, .gtf and .fa can easily be extracted using utility operations included with the package.
 These utility functions can automatically parse the eRNAkitDB content into files that can be used directly with IGV, HTSeq-count, bedtools etc.
 
-The emi.rds database file includes a `core` table that can be used to recreate key resources.
-For windowed analysis, use the make_window() function in eRNAkit.
+The eRNAkitDB database file includes a `core` table that can be used to recreate key resources.
+For windowed analysis, use the make_window() function in the package.
 
-Description of the implemented functions are described in `eRNAkit_0.2.1.pdf` file in the root directory.
+Description of the implemented functions are through the package.
 
 ## Citation
 
@@ -149,7 +149,7 @@ doi: https://doi.org/10.1101/2025.07.06.663389
 &nbsp;
 
 ## Contacts
-c.a.anene{at}leedsbeckett.ac.uk
+caanenedr{@}outlook.com
 
 ## License
 This software is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
