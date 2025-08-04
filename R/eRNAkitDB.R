@@ -1,3 +1,24 @@
+#' Load a database from the eRNAkit.
+#'
+#' Function to load DB .rds DB into environment.
+#'
+#' @param name Name of the db set to load (without .rds)
+#' @return The loaded R object
+#' @export
+#'
+#' @examples
+#' ribo <- loadDB("ribo")
+loadDB <- function(name) {
+  path <- system.file("extdata", paste0(name, ".rds"),
+                      package = "eRNAkit")
+
+  if (path == "") stop("Database not found : ", name)
+  readRDS(path)
+}
+
+
+
+
 # Class
 base = "data.frame"
 

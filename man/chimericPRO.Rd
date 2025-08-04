@@ -15,4 +15,5 @@ A list with n1 and n2 pairs. The name column match the ID.
 \description{
 Function to process chimeric junction files into a bedpe format.
 It splits the pairs to make it easy to find overlaps.
+This functions is intended for internal eRNAkit use, but can apply to any setting.
 }

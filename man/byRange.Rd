@@ -2,7 +2,7 @@
 % Please edit documentation in R/rna2rna.R
 \name{byRange}
 \alias{byRange}
-\title{Find Overlaps Between emi$core and a Genomic Coordinate String}
+\title{Find Overlaps Between eRNAkit$core and a Genomic Coordinate String}
 \usage{
 byRange(erob, s)
 }

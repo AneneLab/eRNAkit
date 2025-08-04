@@ -1,41 +1,15 @@
-#' Extract extract locations of eRNA:mRNA interactions.
-#'
-#' Function to extract locations of eRNA:mRNA interactions from GRanges object.
-#'
-#' @param chimGR Chimeric junction GRanges object. It should be made from ChimPRO output.
-#' @param geneGR Gene annotation GRanges object. It should be made from annGE$gene.
-#' @param enhGR Enhancer annotation GRanges object. It should be made from annGE$erna.
-#'
-#' @returns bedpe type table. xx.x and xx.y are the target pairs
-#' @export
-#'
-rna2rnaR <- function(chimGR, geneGR, enhGR){
-  ovgene <- findOverlaps(chimGR, geneGR)
-  overna <- findOverlaps(chimGR, enhGR)
-
-  in_ge <- cbind(as.data.frame(chimGR[queryHits(ovgene)]),
-                 as.data.frame(geneGR[subjectHits(ovgene)]))
-  in_er <- cbind(as.data.frame(chimGR[queryHits(overna)]),
-                 as.data.frame(enhGR[subjectHits(overna)]))
-
-  out <- merge(in_er, in_ge, by = "mcols.name")
-
-  return(out)
-}
-
-
-#' Extract and count the eRNA:mRNA interactions.
+#' Extract exact location of R2R and count the eRNA:mRNA interactions.
 #'
 #' Function to extract and count eRNA:mRNA interactions from GRanges object.
 #'
 #' @param chimGR Chimeric junction GRanges object. It should be made from ChimPRO output.
-#' @param geneGR Gene annotation GRanges object. It should be made from annGE$gene.
-#' @param enhGR Enhancer annotation GRanges object. It should be made from annGE$erna.
+#' @param geneGR Gene annotation GRanges object. It should be made from eRNAkitDB$G.
+#' @param enhGR Enhancer annotation GRanges object. It should be made from eRNAkitDB$E.
 #'
 #' @returns Interactions counts. Uses IDs for naming enhancer and genes.
 #' @export
 #'
-rna2rna <- function(chimGR, geneGR, enhGR){
+R2R <- function(chimGR, geneGR, enhGR){
   ovgene <- findOverlaps(chimGR, geneGR)
   overna <- findOverlaps(chimGR, enhGR)
 
@@ -53,13 +27,16 @@ rna2rna <- function(chimGR, geneGR, enhGR){
 
   out <- merge(in_er, in_ge, by = "mcols.name")
 
-  out <- aggregate(rep(1, nrow(out)),
+  out2 <- aggregate(rep(1, nrow(out)),
                    by = list(out$mcols.ID.x, out$mcols.ID.y),
                    FUN = sum)
-  colnames(out) <- c("enh", "ID", "count")
+  colnames(out2) <- c("enh", "ID", "count")
 
-  return(out)
+  return(list("R2R"=out2, "R2R_location"=out))
 }
+
+
+
 
 #' Get genomic range object for annGE or chimericPRO.
 #'
@@ -81,10 +58,14 @@ getGRange <- function(tab=exmp){
 }
 
 
+
+
 #' Process chimeric junction file from star-alignment.
 #'
 #' Function to process chimeric junction files into a bedpe format.
 #' It splits the pairs to make it easy to find overlaps.
+#' This functions is intended for internal eRNAkit use, but can apply to any setting.
+#'
 #'
 #' @param file The file path for the chimeric.junction from star.
 #'
@@ -104,11 +85,8 @@ chimericPRO <- function(file) {
   chim$start_aln2 <- as.numeric(chim$start_aln2)
 
   # This set to strand + because the star ouput is respect to +
-  chim$end1 <- mapply(eRNAkit::eeCigar, chim$start_aln1,
-                      "+", chim$cigar_aln1)
-
-  chim$end2 <- mapply(eRNAkit::eeCigar, chim$start_aln2,
-                      "+", chim$cigar_aln2)
+  chim$end1 <- eeCigar(chim$start_aln1, chim$cigar_aln1, "+")
+  chim$end2 <- eeCigar(chim$start_aln2, chim$cigar_aln2, "+")
 
   bedpe <- chim[c("chr1", "start_aln1", "end1", "strand1",
                   "chr2", "start_aln2", "end2", "strand2")]
@@ -131,7 +109,67 @@ chimericPRO <- function(file) {
 }
 
 
-#' Find Overlaps Between emi$core and a Genomic Coordinate String
+
+
+#' Compute end positions from start and CIGAR string
+#'
+#' This function computes the reference-aligned end position for each read
+#' based on its start coordinate and CIGAR string. It accounts for strand
+#' orientation and includes only reference-consuming operations (M, D, N)
+#' in the length calculation.
+#' All reads are assumed to be on the positive strand from based on STAR alignment.
+#' STAR alignment processing is the target of this function.
+#'
+#'
+#' @param start A numeric vector of start positions for each read.
+#' @param cigar A character vector of CIGAR strings corresponding to each read.
+#' @param strand A character scalar or vector indicating strand orientation
+#' (e.g., "+" or "-"). If scalar, it will be recycled.
+#'
+#' @return A numeric vector of computed end positions.
+#'
+#' @examples
+#' start <- c(100, 200, 300)
+#' cigar <- c("10M5D5M", "15M2N10M", "5M10D5M")
+#' eeCigar(start, cigar, "+")
+#'
+#' @export
+eeCigar <- function(start, cigar, strand) {
+  stopifnot(length(start) == length(cigar))
+
+  # Helper
+  clf <- function(cg) {
+    ops <- unlist(strsplit(cg, "(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)",
+                           perl = TRUE))
+
+    lens <- as.numeric(ops[seq(1, length(ops), by = 2)])
+    codes <- ops[seq(2, length(ops), by = 2)]
+
+    # Only M (Match), D (Deletion), and N (Skipped)
+    sum(lens[codes %in% c("M", "D", "N")])
+  }
+
+  out <- data.frame(
+    start = start, cigar = cigar,
+    strand = "+",  stringsAsFactors = FALSE )
+
+  out$ref_lens <-  vapply(cigar, clf, numeric(1))
+
+
+  # Per strand position
+  out$end <- ifelse(
+    out$strand == "+",
+    pmax(1, out$start + out$ref_lens - 1),
+    pmax(1, out$start - out$ref_lens + 1)
+  )
+
+  return(out$end)
+}
+
+
+
+
+#' Find Overlaps Between eRNAkit$core and a Genomic Coordinate String
 #'
 #' Parses a coordinate string and finds overlapping entries in a emi$core.
 #' Returns a data.frame including all metadata columns.
@@ -163,6 +201,8 @@ byRange <- function(erob, s) {
     return(hits)
   }
 }
+
+
 
 
 #' Parse a Genomic Coordinate String into a GRanges Object
@@ -208,3 +248,6 @@ parseGR <- function(c) {
 
   return(GRanges(nam, IRanges(start, end)))
 }
+
+
+

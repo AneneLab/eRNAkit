@@ -114,6 +114,8 @@ TranCi <- function(vcf="path/to/vcf", E="eRNA", G="mRNA",
 }
 
 
+
+
 #' Score Evidence of Regulatory Variants
 #'
 #' This function assigns quantitative scores to variants in a the cisRdb interaction database
@@ -367,6 +369,8 @@ varReg <- function(output, output2,
   }
 
 
+
+
 #' Link a given eRNA to significant impact on mRNA decay or translation efficiency
 #'
 #' This function processes the "eDecay2mRNA" and "TE2mRNA" slots on eRNAkitDB to get their impact on target mRNA.
@@ -433,6 +437,8 @@ to_dete <- function(E, DB, t=0.1){
 }
 
 
+
+
 #' Link eRNAs to their Regulatory Targets
 #'
 #' This function filters the R2R interaction table to return only entries
@@ -457,6 +463,8 @@ link2rr <- function(output2, R2R="dd"){
                interaction <- "R2R")[cols]
 
   return(rr) }
+
+
 
 
 #' Map Variants to Overlapping eRNAs
@@ -519,6 +527,7 @@ var2erna <- function(output, eRNA="db") {
 
 
 
+
 #' Process VCF files from a folder
 #'
 #' This function reads all `.vcf` files in a given folder, filters for PASS SNPs (single nucleotide variants),
@@ -575,6 +584,7 @@ process_vcf <- function(folder, n=2) {
   out$id <- sub("chr", "", out$id)
   return(out)
 }
+
 
 
 
@@ -643,6 +653,8 @@ shrink_lmfit <- function(fit, df, s2) {
 }
 
 
+
+
 #' Estimate Empirical Bayes Prior Parameters
 #'
 #' Computes the prior variance (\eqn{s_0^2}) and prior degrees of freedom (\eqn{d_0})
@@ -673,3 +685,7 @@ ebayes_prior <- function(x){
            "df" = fit$df.prior))
 
   }
+
+
+
+

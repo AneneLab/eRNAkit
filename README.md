@@ -69,8 +69,7 @@ Examples include:
 
 | Function             | Description                                                   |
 |----------------------|---------------------------------------------------------------|
-| `rna2rna()`         | Call RNA-RNA interactions in STAR alignment junction files.   |
-| `listDB()`           | List available database components within eRNAkitDB.          |
+| `R2R()`              | Call RNA-RNA interactions in STAR alignment junction files.   |
 | `fit_decay2()`       | Model decay kinetics of RNA expression in decay experiments. |
 | `eRNkitApp()`        | Launch the interactive `eRNAkit` Shiny app.                   |
 | Wet lab support      | Utility functions to extract information for desiging wet lab experiments such as siRNA, primers and cloning. |
@@ -79,7 +78,7 @@ Examples include:
 &nbsp;
 *...and many more.* 
 
-📘 For full documentation and usage examples is avilable through the standard R manual files.
+📘 For full documentation and usage examples is available through the standard R manual files.
 
 
 &nbsp;
