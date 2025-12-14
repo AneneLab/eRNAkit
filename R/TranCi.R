@@ -352,7 +352,7 @@ varReg <- function(output, output2,
     design <- model.matrix(~factor(group))
     ##
     fit <- limma::lmFit(e_exp, design)
-    fit <- eRNAkit::shrink_lmfit(fit,E.prior["df"], E.prior["s2"])
+    fit <- eRNAkit::shrink_lmfit(fit,G.prior["df"], G.prior["s2"])
 
     fit$var <- v
     fit$ID <- rownames(e_exp)
