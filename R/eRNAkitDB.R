@@ -1,114 +1,218 @@
-#' Load a database from the eRNAkit.
+# Last DB build
+# eRNAkitDB$version <- "0.2.2"
+# eRNAkitDB$genome <- "GRCh38"
+# eRNAkitDB$date <- "11-08-2025"
+# BioML::DBsave(eRNAkitDB, "eRNAkitDB")
+
+
+
+#' Write eRNAkit Database to Standard Bioinformatics File
 #'
-#' Function to load DB .rds DB into environment.
+#' Export the core data in an eRNAkit database to a file in one of the
+#' common bioinformatics formats: BED, GTF, or FASTA.
 #'
-#' @param name Name of the db set to load (without .rds)
-#' @return The loaded R object
-#' @export
+#' @param db A list representing the eRNAkit database object. Must contain
+#'   \code{core} data.frame with columns \code{chr}, \code{start}, and \code{end},
+#'   and \code{E_sequence} data.frame with \code{label} and \code{sequence} columns.
+#'   Defaults to \code{eRNAkitDB}.
+#' @param output Character string specifying the output file path or name.
+#'   Defaults to \code{"eRNADBv0.2.2.gtf"}.
+#' @param format Character string indicating the output format, one of
+#'   \code{"bed"}, \code{"gtf"}, or \code{"fasta"}. Default is \code{"gtf"}.
+#' @param chr Logical; if \code{TRUE}, ensures chromosome names start with \code{"chr"},
+#'   otherwise removes \code{"chr"} prefix. Default is \code{FALSE}.
+#' @param mito Optional character string to rename mitochondrial chromosome
+#'   labels (e.g., \code{"chrM"} to \code{"MT"}). Default is \code{NULL}.
+#'
+#' @details
+#' This function converts the core annotation and sequence data stored in the eRNAkit
+#' database to a chosen file format, writing to disk with optional metadata appended
+#' as header comments (for BED/GTF) or embedded in FASTA headers.
+#'
+#' @return Invisibly returns \code{NULL}. Writes output to the specified file.
 #'
 #' @examples
-#' ribo <- loadDB("ribo")
-loadDB <- function(name) {
-  path <- system.file("extdata", paste0(name, ".rds"),
-                      package = "eRNAkit")
+#' \dontrun{
+#' exportDB(db=eRNAkitDB, mito="MT") # For ensemble
+#' exportDB(output="eRNADB_chrv0.2.2.gtf", chr=T, mito="MT") # for ensemble
+#' exportDB(db=eRNAkitDB, output="eRNADBv0.2.2.bed", format="bed", mito="MT")
+#' exportDB(db=eRNAkitDB, output="eRNADBv0.2.2.fa", format="fasta")
+#' }
+#'
+#' @export
+exportDB <- function(db=eRNAkitDB, output="eRNADBv0.2.2.gtf", format="gtf",
+                          chr = F, mito = NULL){
 
-  if (path == "") stop("Database not found : ", name)
-  readRDS(path)
-}
-
-
-
-
-# Class
-base = "data.frame"
-
-# Set the class
-setClass("eRNAkitDB", slots = list(core = base, E = base, G = base,
-                                  EOC = base, loc = base,
-                                  R2R = base,
-                                  R2R_extend = base,
-                                  R2R_location = base,
-                                  D2D = base,
-                                  PAcy = base,
-                                  eRNA2TF = base,
-                                  eRNA2RBP = base,
-                                  eDecay = base,
-                                  eDecay2mRNA = base,
-                                  eTE = base,
-                                  eTE2mRNA = base))
-
-# Generics
-setGeneric("getCoordinates", function(object, ...) standardGeneric("getCoordinates"))
-
-setMethod("getCoordinates", "eRNAkitDB", function(object,
-                                                  format = c("bed", "gtf", "fasta"),
-                                                  chr.prefix = TRUE,
-                                                  rename.mito = NULL,
-                                                  genome = NULL) {
-  format <- match.arg(format)
-  df <- object@core
-
-  required_cols <- c("chr", "start", "end")
-  if (!all(required_cols %in% names(df))) {
-    stop("core slot must contain columns: 'chr', 'start', and 'end'")
+  ##### Check db is sane
+  if (!all(c("chr", "start", "end") %in% names(db$core))) {
+    stop("db$core must have: 'chr', 'start', and 'end'")
   }
 
-  # Add chr prefix if needed
-  df$chr <- if (chr.prefix) {
-    ifelse(grepl("^chr", df$chr), df$chr, paste0("chr", df$chr))
+  if (!all(c("label", "sequence") %in% names(db$E_sequence))) {
+    stop("db$core must have: 'lable' and 'sequence'")
+  }
+
+
+  # bed and gtf
+  io1 <- function(input, file.name = "file.bed", meta=NULL) {
+    options(scipen = 999)
+    con <- file(file.name, open = "wt")
+
+    if (!is.null(meta)) {
+      writeLines(paste0("#!meta ", meta), con)
+    }
+
+    write.table(input, con, sep = "\t",
+                col.names = FALSE,
+                row.names = FALSE, quote = FALSE)
+
+    close(con)
+  }
+
+  # fasta
+  io2 <- function(input, file.name="file.fa", meta = NULL) {
+    options(scipen = 999)
+    input$label <- paste0(">", input$label)
+    if (!is.null(meta)) {
+      input$label <- paste(input$label, meta)
+    }
+
+    con <- file(file.name, open = "wt")
+
+    for (i in seq_len(nrow(input))) {
+      writeLines(input$label[i], con)
+      writeLines(input$sequence[i], con)
+    }
+
+    close(con)
+  }
+
+  # Process
+  df <- db$core
+
+  #####
+  df$chr <- if (chr) {
+    ifelse(grepl("^chr", df$chr),
+           df$chr, paste0("chr", df$chr))
   } else {
     gsub("^chr", "", df$chr)
   }
 
-  # Rename mitochondrial chromosome if requested
-  if (!is.null(rename.mito)) {
-    df$chr <- gsub("^chrM$|^chrMT$|^MT$|^M$", rename.mito, df$chr)
+  ####
+  if (!is.null(mito)) {
+    df$chr <- gsub("^chrM$|^chrMT$|^MT$|^M$",
+                   mito, df$chr)
   }
 
-  row_ids <- if (!is.null(rownames(df))) rownames(df) else paste0("eRNA_", seq_len(nrow(df)))
 
   out <- switch(format,
+                # bed6
                 bed = {
                   data.frame(
                     chr = df$chr,
                     start = df$start,
                     end = df$end,
-                    name = row_ids,
-                    score = 0,
-                    strand = if ("strand" %in% names(df)) df$strand else ".",
+                    name = df$E,
+                    score = df$score,
+                    strand = ".",
                     stringsAsFactors = FALSE
                   )
                 },
+                # gtf
                 gtf = {
                   data.frame(
                     chr = df$chr,
-                    source = if ("source" %in% names(df)) df$source else "eRNAkit",
-                    type = if ("type" %in% names(df)) df$type else "exon",
+                    source = paste0("eRNAkit_", db$version),
+                    type = "eRNA",
                     start = df$start,
                     end = df$end,
-                    score = ".",
-                    strand = if ("strand" %in% names(df)) df$strand else ".",
+                    score = df$score,
+                    strand = ".",
                     frame = ".",
-                    attribute = paste0("gene_id \"", row_ids, "\";"),
+                    attribute = df$attribute,
                     stringsAsFactors = FALSE
                   )
                 },
+                # fasta
                 fasta = {
-                  if (is.null(genome)) stop("To export FASTA, provide a valid BSgenome object.")
-                  requireNamespace("GenomicRanges", quietly = TRUE)
-                  requireNamespace("Biostrings", quietly = TRUE)
-                  gr <- GenomicRanges::GRanges(
-                    seqnames = df$chr,
-                    ranges = IRanges::IRanges(start = df$start + 1, end = df$end),
-                    strand = if ("strand" %in% names(df)) df$strand else "*"
-                  )
-                  seqs <- Biostrings::getSeq(genome, gr)
-                  names(seqs) <- row_ids
-                  seqs
+                  fasta = {
+                    as.data.frame(db$E_sequence)
+
+                  }
                 }
   )
 
+
+  if (format == "fasta") {
+    io2(input = out, file.name = output,
+        meta = paste(db$version, db$genome, db$date, sep="_"))
+  } else {
+    io1(input = out, file.name = output,
+        meta = paste(db$version, db$genome, db$date, sep="_"))
+  }
+
+  moutput <- normalizePath(output, mustWork = FALSE)
+  message("File written to: ", moutput)
+
+}
+
+
+
+
+#' Create n.bp Genomic Windows or Retain Original Interval for eRNAkitDB$core
+#'
+#' Given a genomic interval, this function splits it into non-overlapping windows
+#' of n base pairs if the interval length is greater than n. If the interval
+#' is shorter than or equal to n, it is returned as-is.
+#'
+#' @param db A list representing the eRNAkit database object. Must contain
+#'   \code{core} data.frame with columns \code{chr}, \code{start}, and \code{end}
+#' @param size An integer indicating the size of the windows "n".
+#'
+#' @return A \code{data.frame} with columns \code{chrom}, \code{start}, \code{end}, and \code{name}.
+#' If the interval is longer than size, the result contains multiple rows representing the windows.
+#' For shorter intervals, a single row is returned.
+#'
+#' @export
+make_window <- function(db = eRNAkitDB, size = 100) {
+  df <- db$core
+
+  # Apply to each row and combine results
+  out <- do.call(rbind, lapply(seq_len(nrow(df)), function(i) {
+    start <- df$start[i]
+    end <- df$end[i]
+    chrom <- df$chr[i]
+    name <- df$E[i]
+    len <- df$score[i]
+
+    if (len <= size) {
+      data.frame(
+        chrom = chrom,
+        start = start,
+        end = end,
+        name = name,
+        iname = name,
+        stringsAsFactors = FALSE
+      )
+    } else {
+      seq_starts <- seq(start, end, by = size)
+      seq_ends <- pmin(seq_starts + (size - 1), end)
+      data.frame(
+        chrom = chrom,
+        start = seq_starts,
+        end = seq_ends,
+        name = paste0(name, "_", seq_along(seq_starts)),
+        iname = name,
+        stringsAsFactors = FALSE
+      )
+    }
+  }))
+
+  rownames(out) <- NULL
   return(out)
-})
+}
+
+
+
 
 
