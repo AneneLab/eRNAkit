@@ -1,4 +1,4 @@
-# **Expanding the Function of Human Enhancer RNAs Beyond the Nucleus**
+# **Expanding the Functions of Human Enhancer RNAs Beyond the Nucleus**
 
 **eRNAkit** is an integrated research platform for studying enhancer RNAs (eRNAs) as functional regulatory molecules. It combines reference annotations, large-scale functional 
 genomics datasets, computational methods and interactive tools into a unified framework for eRNA biology. 
@@ -37,13 +37,13 @@ A developing computational framework that integrates molecular features, cellula
 ## **[Publications](docs/publications)**
 
 
-#### Contacts
+## Contacts
 For questions, collaborations, please contact:
 **Dr Chinedu A. Anene**
 C.A.Anene{\@}leedsbeckett.ac.uk 
 
 
-### License
+## License
 eRNAkit is distributed under the CC BY-NC 4.0 licence.
 - **Free for academic and non-commercial research.**
 - **Commercial use requires a separate licence. Please contact caanenedr{\@}outlook.com for licensing inquiries.**
