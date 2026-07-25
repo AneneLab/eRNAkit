@@ -7,7 +7,7 @@ The platform is organised into research modules. Each module addresses a major b
 # **Research Modules**
 ## **Core** 
 The foundation of eRNAkit. A harmonised atlas of human eRNAs integrating expression, localisation, RNA–RNA interactions, translation, RNA decay, chromatin organisation and regulatory annotations into a single reference framework.
-### **Documentation: [Core](docs/core.md)**
+### **..[more](docs/core.md)**
 
 
 ## **Transcript-resolved eRNA models**
