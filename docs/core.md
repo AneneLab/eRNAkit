@@ -1,8 +1,6 @@
-<h1><strong>Core</strong>
-<span style="float:right; font-size:0.5em; font-weight:normal; padding-right:20px;">
-← <a href="../README.md">Back to eRNAkit</a>
-</span>
-</h1>
+← [Back to eRNAkit](../README.md)
+
+# **Core**
 
 ## Overview
 
