@@ -1,29 +1,29 @@
 # **Expanding the Functional Atlas of Human Enhancer RNAs Beyond the Nucleus**
 
-**eRNAkit** is an integrated research platform for studying enhancer RNAs (eRNAs) as functional regulatory molecules. It combines reference annotations, large-scale functional 
+**eRNAkit** is an integrated research platform for studying enhancer RNAs (eRNAs) as functional regulatory molecules. It combines harmonised reference annotations, large-scale functional 
 genomics datasets, computational methods and interactive tools into a unified framework for eRNA biology. 
 <br> The platform is organised into research modules, each addressing major biological or computational challenge.
 
 
-# **Research Modules**
+## **Research Modules**
 
 
 ### **[Core](docs/core.md)** 
-The foundation of eRNAkit. A atlas of consensus human eRNAs integrating expression, localisation, RNA–RNA & DNA-DNA interactions, translation, RNA decay and chromatin organisation. **..[more](docs/core.md)**
+The foundation of eRNAkit. An atlas of human eRNAs integrating expression, localisation, RNA–RNA & DNA-DNA interactions, translation, RNA decay and chromatin organisation. **..[more](docs/core.md)**
 
 
 ### **[Transcript-resolved eRNA models](docs/transcript.md)**
 A transcript-resolved catalog of human eRNAs generated through pan-transcriptome reconstruction across diverse human tissues, cell types and subcellular compartments (n=121). 
-The resource provides strand-aware GTF annotations, enabling isoform-level investigation of eRNA processing and function. **.. [more](docs/transcript.md)**
+The resource provides strand-aware GTF annotations, enabling isoform-level investigation of eRNA processing, localisation and function. **.. [more](docs/transcript.md)**
 
 
 ### **[Mechanistic non-coding variant interpretation](docs/tranci.md)**
-TranCi, a new framework for prioritising human non-coding enhancer variants by integrating eRNA expression with experimentally derived eRNA–mRNA interaction maps. 
+TranCi, a framework for prioritising human non-coding enhancer variants by integrating eRNA expression with experimentally derived eRNA–mRNA interaction maps. 
 It links genetic variation to downstream regulatory consequences, enabling discovery of functional regulatory variants beyond sequence- and chromatin-based annotation. **.. [more](docs/tranci.md)**
 
 
 ### **[Stress-responsive eRNA landscape in normal physiology](docs/stress.md)**
-An emerging resource profiling eRNA responses across cellular stress and physiological perturbations, providing a platfomr to understand how post-trancriptiona eRNAs functions contribute to adaptive regulatory programmed in cellular homeostasis. **.. [more](docs/stress.md)**
+An emerging resource profiling eRNA responses across cellular stress and physiological perturbations, providing a platform to understand how post-transcriptional eRNA functions contribute to adaptive regulatory programmes in cellular homeostasis. **.. [more](docs/stress.md)**
 
 
 ### **[eRNAcode: The predictive layer of eRNA biology](docs/eRNACode.md)**
@@ -33,7 +33,9 @@ A developing computational framework that integrates molecular features, cellula
 
 ### **[Installation](docs/installation)**
 
-
+##
+##
+##
 ## **[Publications](docs/publications)**
 
 
