@@ -15,13 +15,11 @@ Most dependencies will be installed automatically. If any are missing, install t
 The first launch of **eRNAkitApp** will also attempt to install any missing packages automatically.
 
 Documentation for all implemented functions is available through the package, or [here](../man).
-
 <br><br>
 ### eRNAkitDB
 The complete reference database (see [Core](docs/core.md)) is provided in the repository as [`eRNAkitDB.rds`](../eRNAkitDB.rds).
 
 A high-confidence subset required by **eRNAkitApp** is bundled with the package installation.
-
 <br><br>
 ### Integration into other pipelines
 Standard bioinformatics file formats, including **BED**, **GTF**, and **FASTA**, can be generated directly from **eRNAkitDB** using the package's utility functions.
