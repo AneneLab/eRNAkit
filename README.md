@@ -1,4 +1,4 @@
-# **Expanding the Functional Atlas of Human Enhancer RNAs Beyond the Nucleus**
+# **Expanding the Function of Human Enhancer RNAs Beyond the Nucleus**
 
 **eRNAkit** is an integrated research platform for studying enhancer RNAs (eRNAs) as functional regulatory molecules. It combines reference annotations, large-scale functional 
 genomics datasets, computational methods and interactive tools into a unified framework for eRNA biology. 
