@@ -29,7 +29,6 @@ A developing computational framework that integrates molecular features, cellula
 Installing the eRNAKit R package will automatically install all required components. See the full installation guide **[here](docs/installation.md)**.
 
 <br><br>
-<br><br>
 ## **[Publications](docs/publications)**
 ##
 ## Contacts
