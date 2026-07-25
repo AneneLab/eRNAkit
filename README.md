@@ -25,11 +25,12 @@ An emerging resource profiling eRNA responses across cellular stress and physiol
 ### **[eRNAcode: The predictive layer of eRNA biology](docs/eRNACode.md)**
 A developing computational framework that integrates molecular features, cellular localisation and RNA interaction networks to predict functional eRNA–target relationships and regulatory outcomes at genome scale. **.. [more](docs/eRNACode.md)**
 <br><br>
-### **[Installation](docs/installation)**
+##
+### **[Installation](docs/installation.md)**
 Installing the eRNAKit R package will automatically install all required components. See the full installation guide **[here](docs/installation.md)**.
 
 <br><br>
-## **[Publications](docs/publications)**
+## **[Publications](docs/publications.md)**
 ##
 ## Contacts
 For questions, collaborations, please contact:
