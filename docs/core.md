@@ -1,4 +1,6 @@
-# **Core**       ← [Back to eRNAkit](../README.md)
+# **Core**       
+
+← [Back to eRNAkit](../README.md)
 
 ## Overview
 
