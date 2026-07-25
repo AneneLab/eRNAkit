@@ -1,157 +1,54 @@
-# eRNAkit
+# **eRNAKit**
 
-**Expanding the Functional Atlas of human Enhancer RNAs Beyond the Nucleus**
-
-**eRNAkit** is the first comprehensive resource specifically designed to investigate the post-transcriptional functions of human enhancer RNAs (eRNAs).
-
-The resource has three layers including:
-- **eRNAkitDB**
-- **eRNAkitApp**
-- **Workflows**
-
-We are currently working on expanding the analytics workflows and database to include - 
-additional utility functions and profiles of eRNA under various stress conditions "STRESS eRNA".
+**Expanding the Functional Atlas of Human Enhancer RNAs Beyond the Nucleus** is an integrated research platform for studying enhancer RNAs (eRNAs) as functional regulatory molecules. eRNAkit combines harmonised reference annotations, large-scale functional genomics datasets, computational methods and interactive tools into a unified framework for investigating eRNA biology. 
+The platform is organised into research modules. Each module addresses a major biological or computational challenge usually accompanied by a dedicated publication describing the methodology, validation and applications.
 
 
-&nbsp;
-&nbsp;
+# **Research Modules**
+## **Core** 
+The foundation of eRNAkit. A harmonised atlas of human eRNAs integrating expression, localisation, RNA–RNA interactions, translation, RNA decay, chromatin organisation and regulatory annotations into a single reference framework.
+### **Documentation: [Core](docs/core.md)**
 
 
-## 📦 eRNAkitDB
-The eRNAkitDB object `eRNAkitDB.rds` contains harmonized eRNA annotations and interaction datasets to support integrative regulatory analysis.
-It includes post-transcriptional regulatory information across human cell types, experimental techniques and molecules. 
-Below is a summary of each slot.
-
-#### Core Components
-| Slot Name | Description |
-|-----------|-------------|
-| `core` | Consensus eRNA annotation (hg38), with genomic coordinates and identifiers. Serves as the central reference set. |
-| `E` | BED formatted companion for the `core` annotation.|
-| `G` | Gene-level BED formatted annotation for potential mRNA targets. |
-| `EOC` | Tissue- and organ-level eRNA expression quantification and specificty. |
-| `loc` | Sub cellular localisation expression and index (cytoplasm, nucleus, fractions) for eRNAs across cell types. |
-| `PAcy` | Polysome and Ribosome profile infromation for eRNAs. |
-| `w100bp_n25` | ±100bp window expression of eRNAs across 25 samples of polyA+/-. Serves as valuable resource for designing siRNAs, primers and cloning constructs. |
-| `E_sequence` | FASTA-format eRNA sequences for oligo designs and motif/structure analysis. |
-
-### Interaction Data
-| Slot Name | Description |
-|-----------|-------------|
-| `R2R` | RNA–RNA interactions between eRNAs and mRNAs (from KARR-Seq, RIC-seq and PARIS). |
-| `R2R_location` | Exact location of the R2R interactions for feature mapping and motif/structure analysis. |
-| `D2D` | 3D genome interactions linking eRNAs to genes (via Hi-C, derives from `TADS`). |
-| `eRNA2TF` | eRNA–TF associations from ChIP-seq overlaps (via remap2022). |
-| `eRNA2RBP` | eRNA-RNA-binding protein interactions from eCLIP (via Encode datasets). |
-
-### Decay and Translation
-| Slot Name | Description |
-|-----------|-------------|
-| `eDecay` | eRNA RNA decay kinetics from time-resolved transcriptions (via Actinomycin D, set92). |
-| `eDecay2mRNA` | Impact of eRNA half-lives on target mRNA stability (derives from `eDecay` and `R2R`). |
-| `TE2mRNA` | Impact of eRNA expression on target mRNA translation efficiency (via RPFdb). |
-
-### Sequence and Genomic Context
-| Slot Name | Description |
-|-----------|-------------|
-| `TADS` | Genome wide topologically associating domains (TADS, via Encode). Serves as template for upstream regulations. |
-| `Regulome` | Genome wide regulatory element status across multiple cell types (via Ensemble regulatory build). |
-
-&nbsp;
-**A column mapping for the information in these slots can be found inside eRNAkitDB.meta**
-
-&nbsp;
-&nbsp;
+## **Transcript-resolved eRNA models**
+A transcript-resolved catalogue of human eRNAs generated through pan-transcriptome reconstruction across diverse human tissues, cell types and subcellular compartments (n=121). 
+The resource provides strand-aware GTF annotations, enabling isoform-level investigation of eRNA processing, localisation and regulation.
+### **Documentation: [Transcript models](transcript)**
 
 
-## 🔁 Workflows
-Several upstream and downstream processing functions are available in the `eRNAkit` package to support common eRNA analysis workflows.
-Examples include:
-
-| Function             | Description                                                   |
-|----------------------|---------------------------------------------------------------|
-| `R2R()`              | Call RNA-RNA interactions in STAR alignment junction files.   |
-| `fit_decay2()`       | Model decay kinetics of RNA expression in decay experiments. |
-| `eRNkitApp()`        | Launch the interactive `eRNAkit` Shiny app.                   |
-| Wet lab support      | Utility functions to extract information for desiging wet lab experiments such as siRNA, primers and cloning. |
-| DB operations        | Utility functions to extract standard bioinformatics formats including, gtf, BED4, windows etc |
-
-&nbsp;
-*...and many more.* 
-
-📘 For full documentation and usage examples is available through the standard R manual files.
+## **Mechanistic non-coding variant interpretation**
+A functional framework for prioritising human noncoding enahncer variants by integrating eRNA expression with experimentally derived eRNA–mRNA interaction maps. 
+TranCi links genetic variation to downstream regulatory consequences, enabling discovery of functional regulatory variants beyond sequence- and chromatin-based annotation.
+### **Documentation: [TranCi](docs/tranci.md)**
 
 
-&nbsp;
-&nbsp;
+## **Stress-responsive eRNA landscape in normal physiology**
+An emerging resource profiling eRNA responses across cellular stress and physiological perturbations, providing a framework to understand how eRNAs contribute to adaptive regulatory programmes and cellular homeostasis.
+### **Status: In development** 
+Collaborations and partnerships are welcome.
 
-## 🖥️ eRNAkitApp
 
-The eRNAkit Shiny app provides an interactive dashboard for exploring the eRNAkitDB.
-The UI provides multiple search options, including by eRNA, gene and coordinates.
+## **eRNAcode: The predictive layer of eRNA biology**
 
-#### Main programms
-The dashboard features buttons to switch views and analyses, including:
+A developing computational framework that integrates molecular features, cellular localisation and RNA interaction networks to predict functional eRNA–target relationships and regulatory outcomes at genome scale.
+### **Status: In development** 
+Collaborations and partnerships are welcome.
 
-| Label        | Content                                |
-|--------------|-----------------------------------|
-| LOCALISATION | eRNA localisation information. |
-| TARGET       | eRNA-target interactions. |
-| EXPRESSION   | eRNA expression across primary cells and major tissues. |
-| RIBOSOME     | Ribosome and polysome association.                      |
 
-### Notes
-We will add new UI features as we develop the resource. 
-Please, get in touch if you will want to see something implemented.
-Currently, the UI is most suitable for exploring high confidence interactions for a few eRNAs. 
-For large scale analysis, we recommend using the eRNAkitDB directly which contains extended datasets and annotations.
+# **[Installation](docs/installation)**
+# **[Publications](docs/publications)**
 
-&nbsp;
-&nbsp;
-
-### Installation
-The recommended way to install eRNAkit and its associated database is by running:
-
-- `devtools::install_github("AneneLab/eRNAkit")`
-
-Most dependencies should install automatically. If not, install them manually using: 
-
-- `install.packages(c("tidyr", "dplyr", "ggplot2", "igraph", "data.table", "rintrojs", "shiny"))`
-- `BiocManager::install("GenomicRanges")`
-
-The first run of the eRNAkitApp should also install any missing packages automatically.
-
-### **Integration to other pipelines**
-Standard bioinformatics files such as .bed, .gtf and .fa can easily be extracted using utility operations included with the package.
-These utility functions can automatically parse the eRNAkitDB content into files that can be used directly with IGV, HTSeq-count, bedtools etc.
-
-The eRNAkitDB database file includes a `core` table that can be used to recreate key resources.
-For windowed analysis, use the make_window() function in the package.
-
-Description of the implemented functions are through the package.
-
-## Citation
-
-&nbsp;
-
-**For core components of the package, please cite:** <br>
-eRNAkit: Expanding the Functional Atlas of human Enhancer RNAs Beyond the Nucleus <br>
-Natalia Benova, Rene Kuklinkova, Mahmoud K Eldahshoury, Chinedu Anthony Anene <br>
-doi: https://doi.org/10.1101/2025.04.25.650683
-
-&nbsp;
-
-**For eRNA's link to target mRNA stability and translation efficiency, please cite:** <br>
-eRNAs Modulate mRNA Stability and Translation Efficiency to Bridge Transcriptional and Post-transcriptional Gene Regulation <br>
-Rene Kuklinkova, Natalia Benova, Chinedu Anthony Anene <br>
-doi: https://doi.org/10.1101/2025.07.06.663389 
-
-&nbsp;
 
 ## Contacts
-caanenedr{@}outlook.com
+
+For questions, collaborations or commercial licensing, please contact:
+
+Dr Chinedu A. Anene caanenedr{\@}outlook.com
+
 
 ## License
-This software is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
-- **Free for academic and non-commercial research.**
-- **Commercial use requires a license. Please contact caanenedr{@}outlook.com for details.**
+eRNAkit is distributed under the CC BY-NC 4.0 licence.
+
+- **Free for academic and other non-commercial research.**
+- **Commercial use requires a separate licence. Please contact caanenedr{\@}outlook.com for licensing inquiries.**
