@@ -13,7 +13,7 @@ The foundation of eRNAkit. A harmonised atlas of human eRNAs integrating express
 ## **Transcript-resolved eRNA models**
 A transcript-resolved catalogue of human eRNAs generated through pan-transcriptome reconstruction across diverse human tissues, cell types and subcellular compartments (n=121). 
 The resource provides strand-aware GTF annotations, enabling isoform-level investigation of eRNA processing, localisation and regulation.
-### **Documentation: [Transcript models](transcript)**
+### **Documentation: [Transcript models](docs/transcript.md)**
 
 
 ## **Mechanistic non-coding variant interpretation**
@@ -24,7 +24,7 @@ TranCi links genetic variation to downstream regulatory consequences, enabling d
 
 ## **Stress-responsive eRNA landscape in normal physiology**
 An emerging resource profiling eRNA responses across cellular stress and physiological perturbations, providing a framework to understand how eRNAs contribute to adaptive regulatory programmes and cellular homeostasis.
-### **Status: In development** 
+### **Status: [Stress.eDB](docs/stress.md)** 
 Collaborations and partnerships are welcome.
 
 
@@ -37,6 +37,7 @@ Collaborations and partnerships are welcome.
 
 # **[Installation](docs/installation)**
 # **[Publications](docs/publications)**
+# **[GTF files](../gtf)**
 
 
 ## Contacts

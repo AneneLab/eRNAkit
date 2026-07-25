@@ -1,21 +1,32 @@
-### Installation
-The recommended way to install eRNAkit and its associated database is by running:
+# Installation
+← [Back to eRNAkit](../README.md)
+
+## eRNAkit R package
+
+The recommended way to install the **eRNAkit** package (including **eRNAkitApp**, small embeded data and associated workflows) is:
 
 - `devtools::install_github("AneneLab/eRNAkit")`
 
-Most dependencies should install automatically. If not, install them manually using: 
+Most dependencies will be installed automatically. If any are missing, install them manually:
 
 - `install.packages(c("tidyr", "dplyr", "ggplot2", "igraph", "data.table", "rintrojs", "shiny"))`
 - `BiocManager::install("GenomicRanges")`
 
-The first run of the eRNAkitApp should also install any missing packages automatically.
+The first launch of **eRNAkitApp** will also attempt to install any missing packages automatically.
 
-### **Integration to other pipelines**
-Standard bioinformatics files such as .bed, .gtf and .fa can easily be extracted using utility operations included with the package.
-These utility functions can automatically parse the eRNAkitDB content into files that can be used directly with IGV, HTSeq-count, bedtools etc.
+Documentation for all implemented functions is available through the package, or [here](../man).
 
-The eRNAkitDB database file includes a `core` table that can be used to recreate key resources.
-For windowed analysis, use the make_window() function in the package.
 
-Description of the implemented functions are through the package.
+## eRNAkitDB
 
+The complete reference database (see [Core](docs/core.md)) is provided in the repository as [`eRNAkitDB.rds`](../eRNAkitDB.rds).
+
+A high-confidence subset required by **eRNAkitApp** is bundled with the package installation.
+
+
+## Integration into other pipelines
+
+Standard bioinformatics file formats, including **BED**, **GTF**, and **FASTA**, can be generated directly from **eRNAkitDB** using the package's utility functions.
+These utilities automatically export annotations for use with tools such as **IGV**, **HTSeq-count**, and **bedtools**.
+
+See [Core](docs/core.md) for additional details.
