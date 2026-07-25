@@ -127,9 +127,9 @@ directly which contains extended datasets and annotations.
 **For the Foundation components of the package, please cite:** 
 <br> Benova, N., Kuklinkova, R., Eldahshoury, M.K. and Anene, C.A., 2025. ** eRNAkit: Expanding the Functional Atlas of human 
 <br> Enhancer RNAs Beyond the Nucleus.** bioRxiv, pp.2025-04.
-<br> doi: https://doi.org/10.1101/2025.04.25.650683
+<br> **doi:** https://doi.org/10.1101/2025.04.25.650683
 
 **For eRNA's link to target mRNA stability and translation efficiency, please cite:** 
 <br> Kuklinkova, R., Benova, N. and Anene, C.A., 2026. **eRNAs modulate mRNA stability and translation efficiency to bridge 
 <br> transcriptional and post-transcriptional gene regulation**. RNA, 32(5), pp.704-723. 
-<br> doi: 10.1261/rna.080681.125
+<br> **doi:** 10.1261/rna.080681.125

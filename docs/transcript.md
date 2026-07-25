@@ -21,8 +21,8 @@ These models enable RNA-centric analysis of eRNA biology, including regulation a
 We built this due to the Anene's Lab interest in post-trancriptional eRNA functions.
 
 
-## Resource Files
- **[GTF files](../gtf/transcript_models)**
+## Standalone GTF Files
+ **[GTFs](../gtf/transcript_models)**
 | File | Description |
 |---|---|
 | `eRNATmod_nchr.gtf` | Chromosomes are listed without the "chr" prefix, so 1, 2, 3 etc. |
@@ -31,7 +31,7 @@ We built this due to the Anene's Lab interest in post-trancriptional eRNA functi
 The GTF files is also include as a slot `transcript` inside the **[eRNAkitDB](../eRNAkitDB.rds)**
 
 
-## GTF Annotation
+## GTF Annotation Information
 The GTF follows standard GTF formatting, with transcript-specific information stored in column 9 attributes.
 Example: chr1  eRNAkit  transcript  51001294  51005245  .  +  .  gene_id “EN4528”; transcript_id “EN4528.1”; eRNAkit “en4528”;
 
@@ -100,8 +100,6 @@ This enables direct connection between transcript-resolved models and:
 - Translation-associated datasets.
 
 
-## Citation
-
-For the transcript-resolved enhancer RNA catalogue, please cite:
-
+## Citation <br>
+For the transcript-resolved enhancer RNA catalogue, please cite: <br>
 Benova, N., Kuklinkova, R., Ibenye, E., Boyne, J.R. and Anene, C.A., 2026. **Reconstructing the human enhancer RNA transcriptome.** bioRxiv, pp.2026-03.

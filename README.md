@@ -7,49 +7,42 @@ The platform is organised into research modules. Each module addresses a major b
 # **Research Modules**
 ## **Core** 
 The foundation of eRNAkit. A harmonised atlas of human eRNAs integrating expression, localisation, RNA–RNA interactions, translation, RNA decay, chromatin organisation and regulatory annotations into a single reference framework.
-### **..[more](docs/core.md)**
+<br> **..[more](docs/core.md)**
 
 
 ## **Transcript-resolved eRNA models**
 A transcript-resolved catalogue of human eRNAs generated through pan-transcriptome reconstruction across diverse human tissues, cell types and subcellular compartments (n=121). 
 The resource provides strand-aware GTF annotations, enabling isoform-level investigation of eRNA processing, localisation and regulation.
-### **Documentation: [Transcript models](docs/transcript.md)**
+<br> **..[more](docs/transcript.md)**
 
 
 ## **Mechanistic non-coding variant interpretation**
 A functional framework for prioritising human noncoding enahncer variants by integrating eRNA expression with experimentally derived eRNA–mRNA interaction maps. 
 TranCi links genetic variation to downstream regulatory consequences, enabling discovery of functional regulatory variants beyond sequence- and chromatin-based annotation.
-### **Documentation: [TranCi](docs/tranci.md)**
+<br> **..[more](docs/tranci.md)**
 
 
 ## **Stress-responsive eRNA landscape in normal physiology**
 An emerging resource profiling eRNA responses across cellular stress and physiological perturbations, providing a framework to understand how eRNAs contribute to adaptive regulatory programmes and cellular homeostasis.
-### **Status: [Stress.eDB](docs/stress.md)** 
-Collaborations and partnerships are welcome.
+<br> **..[more](docs/stress.md)**  <br> Collaborations and partnerships are welcome.
 
 
 ## **eRNAcode: The predictive layer of eRNA biology**
-
 A developing computational framework that integrates molecular features, cellular localisation and RNA interaction networks to predict functional eRNA–target relationships and regulatory outcomes at genome scale.
-### **Status: In development** 
-Collaborations and partnerships are welcome.
+<br> **Status: In development** <br> Collaborations and partnerships are welcome.
 
 
-# **[Installation](docs/installation)**
-# **[Publications](docs/publications)**
-# **[GTF files](../gtf)**
+## **[Installation](docs/installation)**
+## **[Publications](docs/publications)**
+## **[GTFs](../gtf/)**
 
 
 ## Contacts
-
-For questions, collaborations or commercial licensing, please contact:
-
-Dr Chinedu A. Anene caanenedr{\@}outlook.com
+<br> For questions, collaborations, please contact:
+Dr Chinedu A. Anene, C.A.Anene{\@}leedsbeckett.ac.uk or caanenedr{\@}outlook.com
 
 
 ## License
-
-eRNAkit is distributed under the CC BY-NC 4.0 licence.
-
+<br> eRNAkit is distributed under the CC BY-NC 4.0 licence. <br>
 - **Free for academic and other non-commercial research.**
 - **Commercial use requires a separate licence. Please contact caanenedr{\@}outlook.com for licensing inquiries.**
