@@ -315,6 +315,12 @@ varReg <- function(output, output2,
     }
 
     group <- ifelse(names(e_exp) %in% varSamples, 1, 0)
+
+    # Skip if only 1 level
+    if(length(unique(group)) < 2) {
+      return(NULL)
+    }
+    
     design <- model.matrix(~factor(group))
     ##
     fit <- limma::lmFit(e_exp, design)
