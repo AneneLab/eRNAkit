@@ -1,6 +1,6 @@
-# TranCi
 ← [Back to eRNAkit](../README.md)
 
+# TranCi
 **Mechanistic prioritisation of functional non-coding variants through enhancer RNA-mediated regulation**
 
 TranCi is a computational framework for prioritising functional non-coding variants by integrating enhancer RNA (eRNA) expression with experimentally derived eRNA–mRNA interaction maps. 
@@ -11,7 +11,6 @@ The framework supports both cohort-level analysis using matched genomic and tran
 
 
 ## Installation
-
 TranCi is included as part of the **eRNAkit** R package and does not require a separate installation.
 
 Please see the main installation guide:
