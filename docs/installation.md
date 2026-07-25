@@ -21,7 +21,6 @@ Documentation for all implemented functions is available through the package, or
 The complete reference database (see [Core](docs/core.md)) is provided in the repository as [`eRNAkitDB.rds`](../eRNAkitDB.rds).
 
 A high-confidence subset required by **eRNAkitApp** is bundled with the package installation.
-
 <br><br>
 <br><br>
 ### Integration into other pipelines
