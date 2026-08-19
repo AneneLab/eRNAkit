@@ -26,7 +26,7 @@ cellular behavior.
 <br> **Related module:** [Core](docs/core.md) and [TranCi](docs/tranci.md)
 
 
-### **Benova, N., Kuklinkova, R., Ibenye, E., Boyne, J.R. and Anene, C.A., 2026. Reconstructing the human enhancer RNA transcriptome. bioRxiv, pp.2026-03.** <br>
+### **Benova, N., Kuklinkova, R., Ibenye, E., Boyne, J.R. and Anene, C.A., 2026. Reconstructing the human enhancer RNA transcriptome. BMC Genomics.** <br>
 Transcript-resolved models of RNA enable functional interrogation of RNA biology by linking processing, structure, localisation, and regulatory interactions to specific RNA molecules. Across coding and 
 noncoding transcriptomes, such models have been essential for defining RNA-level mechanisms relevant to physiology and disease. Enhancer RNAs (eRNAs), however, remain largely characterised without 
 transcript-level definitions, and no widely adopted transcript-resolved reference exists, limiting investigation of how individual eRNAs are processed, localised, and participate in transcriptional 

@@ -100,4 +100,4 @@ This enables direct connection between transcript-resolved models and:
 
 ## Citation <br>
 For the transcript-resolved enhancer RNA catalogue, please cite: <br>
-Benova, N., Kuklinkova, R., Ibenye, E., Boyne, J.R. and Anene, C.A., 2026. **Reconstructing the human enhancer RNA transcriptome.** bioRxiv, pp.2026-03.
+Benova, N., Kuklinkova, R., Ibenye, E., Boyne, J.R. and Anene, C.A., 2026. **Reconstructing the human enhancer RNA transcriptome.** BMC Genomics.
