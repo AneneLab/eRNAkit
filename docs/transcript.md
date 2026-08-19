@@ -1,8 +1,6 @@
-# Transcript Models
-
 ← [Back to eRNAkit](../README.md)
 
-## Overview
+# **Transcript Models**
 
 Enhancer RNAs (eRNAs) have traditionally been represented as genomic coordinates rather than defined RNA molecules. This limits the ability to investigate how individual eRNAs are processed, localised, structured or functionally regulated.
 The Transcript Models module provides a transcript-resolved annotation of human enhancer RNAs generated through pan-transcriptome reconstruction of stranded RNA-seq datasets across diverse human tissues, cell types and subcellular compartments.

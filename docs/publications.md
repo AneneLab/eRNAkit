@@ -1,6 +1,6 @@
-# Publications
-
 ← [Back to eRNAkit](../README.md)
+
+# **Publications**
 
 ### **Benova, N., Kuklinkova, R., Eldahshoury, M.K. and Anene, C.A., 2025. eRNAkit: Expanding the Functional Atlas of human Enhancer RNAs Beyond the Nucleus. bioRxiv, pp.2025-04.** <br>
 Enhancer RNAs (eRNAs) are a class of non-coding RNAs transcribed from active enhancers that regulate various aspects of transcription. 

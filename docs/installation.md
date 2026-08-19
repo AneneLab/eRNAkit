@@ -1,6 +1,6 @@
 ← [Back to eRNAkit](../README.md)
 
-# Installation
+# **Installation**
 
 ### eRNAkit R package
 The recommended way to install the **eRNAkit** package (including **eRNAkitApp**, small embeded data and associated workflows) is:
